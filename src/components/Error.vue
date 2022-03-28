@@ -10,7 +10,7 @@ export default {
 	name: 'error-component',
 	methods: {
 		goHome() {
-			this.router.go({name:'Home'})
+			this.$router.go({name:'Home'})
 		}
 	}
 }
@@ -51,7 +51,7 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 25px;
+	justify-content: center;
 	height: 44px;
 	color: white;
 	background: #f22539;
@@ -62,5 +62,7 @@ export default {
 	font-family: 'Lato';
 	font-weight: 500;
 	font-size: 18px;
+	width: 150px;
+	margin-right: 1%;
 }
 </style>

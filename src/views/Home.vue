@@ -13,7 +13,6 @@
 <script>
 // @ is an alias to /src
 import { mapGetters } from 'vuex'
-import HelloWorld from '@/components/HelloWorld.vue'
 import Search from '@/components/Search.vue'
 import Error from '@/components/Error.vue'
 import BottonBar from '@/components/BottonBar.vue'
@@ -22,7 +21,6 @@ import List from '@/components/List.vue'
 export default {
 	name: 'Home',
 	components: {
-		HelloWorld,
 		Search,
 		Error,
 		BottonBar,
