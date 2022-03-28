@@ -73,6 +73,7 @@ export default new Vuex.Store({
 					Height: pokemon.height,
 					Types: pokemon.types.map((el) => el.type.name).toString(),
 				},
+				dataClipboard: `${pokemon.forms[0].name}, ${pokemon.types.map((el) => el.type.name).toString()}`
 			}
 		},
 		FAVS_POKEMONS(state, pokemons) {
@@ -127,6 +128,7 @@ export default new Vuex.Store({
 		},
 		getPokemonsFavs({commit, state }){
 			state.show.list = false
+			state.show.find = false
 			commit('FAVS_POKEMONS')
 			state.show.listFavs = true
 			
@@ -142,6 +144,7 @@ export default new Vuex.Store({
 		getPokemonsAll({state}) {
 			state.show.list = true
 			state.show.listFavs = false
+			state.show.find = false
 		}
 	},
 	modules: {},

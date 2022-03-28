@@ -20,14 +20,25 @@
 				<strong>{{ key }}:</strong> {{ value }}
 			</div>
 			<template #modal-footer>
-				<button class="botton-shared" @click="shareInfo">
+				<button
+					class="botton-shared"
+					v-clipboard:copy="data"
+					v-clipboard:success="onCopy"
+					v-clipboard:error="onError"
+				>
 					Share to my friends
 				</button>
-				<img v-show="pokemon.fav" @click="addPokemonFav" src="../assets/img/icons/IconStarSelected.svg" />
-				<img v-show="!pokemon.fav"
+				<img
+					v-show="pokemon.fav"
+					@click="addPokemonFav"
+					src="../assets/img/icons/IconStarSelected.svg"
+				/>
+				<img
+					v-show="!pokemon.fav"
 					@click="addPokemonFav"
 					src="../assets/img/icons/IconStarNoSelected.svg"
 				/>
+				<input class="input-clipboard" type="text" v-model="data"/>
 			</template>
 		</b-modal>
 	</div>
@@ -38,12 +49,22 @@ export default {
 	props: ['pokemon'],
 	data() {
 		return {
-			// pokemon: {}
+			data: "",
+		}
+	},
+	watch: {
+		pokemon() {
+			this.data = `${this.pokemon.stats.Name},${this.pokemon.stats.Types}`
 		}
 	},
 	methods: {
-		shareInfo() {
-			
+		onCopy: function (e) {
+			console.log(e)
+			alert('Acabas de guardar en el portapapeles')
+		},
+		onError: function (e) {
+			alert('No se pudo copiar el texto al portapapeles')
+			console.log(e)
 		},
 		addPokemonFav() {
 			this.$store.dispatch('addFavPokemon', {
@@ -137,4 +158,12 @@ export default {
 .image-pokemon {
 	height: 78%;
 }
+
+.input-clipboard {
+	position: fixed;
+	top: 50%;
+	z-index: -10
+}
+
+
 </style>

@@ -44,7 +44,6 @@ export default {
 				...this.pokemon,
 				...this.pokemonDetail,
 			}
-			console.log(this.pokemonData)
 		},
 	},
 	methods: {
