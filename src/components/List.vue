@@ -5,7 +5,7 @@
 				v-for="(item, index) in pokemons"
 				:key="index"
 				class="item-list"
-				@click="openModal(item.name)"
+				@click="openModal(item)"
 			>
 				{{ item.name }}
 				<img
@@ -15,7 +15,7 @@
 				<img v-show="item.fav" src="../assets/img/icons/IconStarSelected.svg" />
 			</div>
 		</div>
-		<detail :pokemon.sync="pokemon" ></detail>
+		<detail :pokemon.sync="pokemonData"></detail>
 	</div>
 </template>
 <script>
@@ -29,7 +29,8 @@ export default {
 	},
 	data() {
 		return {
-			pokemon: {}
+			pokemon: {},
+			pokemonData: {},
 		}
 	},
 	computed: {
@@ -39,13 +40,18 @@ export default {
 	},
 	watch: {
 		pokemonDetail() {
-			this.pokemon = this.pokemonDetail
-		} 
+			this.pokemonData = {
+				...this.pokemon,
+				...this.pokemonDetail,
+			}
+			console.log(this.pokemonData)
+		},
 	},
 	methods: {
-		openModal(name) {
-			console.log(name)
-			this.$store.dispatch('detailPokemon', name)
+		openModal(item) {
+			this.pokemon = { fav: item.fav }
+			console.log(item)
+			this.$store.dispatch('detailPokemon', item.name)
 			this.$bvModal.show('my-modal')
 		},
 	},
@@ -84,5 +90,4 @@ export default {
 	justify-content: space-between;
 	color: #353535;
 }
-
 </style>

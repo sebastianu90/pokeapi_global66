@@ -23,7 +23,8 @@
 				<button class="botton-shared" @click="shareInfo">
 					Share to my friends
 				</button>
-				<img
+				<img v-show="pokemon.fav" @click="addPokemonFav" src="../assets/img/icons/IconStarSelected.svg" />
+				<img v-show="!pokemon.fav"
 					@click="addPokemonFav"
 					src="../assets/img/icons/IconStarNoSelected.svg"
 				/>
@@ -49,6 +50,7 @@ export default {
 				name: this.pokemon.stats.Name,
 				fav: true,
 			})
+			this.$bvModal.hide('my-modal')
 		},
 	},
 }

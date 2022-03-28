@@ -82,6 +82,10 @@ export default new Vuex.Store({
 		},
 		ADD_FAV(state, pokemon) {
 			state.pokemonsFavs.push(pokemon)
+		},
+		REMOVE_FAV(state, pokemon) {
+			state.pokemonsFavs.splice(pokemon, 1)
+			console.log(state.pokemonsFavs)
 		}
 	},
 	actions: {
@@ -127,8 +131,13 @@ export default new Vuex.Store({
 			state.show.listFavs = true
 			
 		},
-		addFavPokemon({commit}, pokemon) {
-			commit('ADD_FAV', pokemon)
+		addFavPokemon({commit, state}, pokemon) {
+			const index = state.pokemonsFavs.findIndex(el => el.name === pokemon.name)
+			if (index === -1 ) {
+				commit('ADD_FAV', pokemon)
+			}	else {
+				commit('REMOVE_FAV', index)
+			}
 		},
 		getPokemonsAll({state}) {
 			state.show.list = true
