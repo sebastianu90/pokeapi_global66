@@ -18,4 +18,4 @@ Definí el desarrollo a las siguientes consideraciones:
   - El agregar o eliminar de favoritos solo se puede hacer desde el icono de la estrella en modal.
   - La accíon de agregar o elimiinar en la modal significa el cierre de la misma.
 
-Agradecidos con esta oportunidad.
+Agradecido con esta oportunidad.
